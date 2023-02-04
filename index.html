@@ -13,15 +13,42 @@
 
 <body>
     <!-- navbar -->
-    <div class="container-fluid">
-        <div class="row navbar">
-            <h1>Weather Dashboard</h1>
+    <nav class="navbar-container bg-dark text-white text-center p-3">
+        <h1 class="navbar-title">Weather Dashboard</h1>
+    </nav>
+
+    <!-- main container for page. broken up into sections with row classes! -->
+    <!-- side search bar/column -->
+    <div class="search-container col-md-3 p-4">
+        <div class="row">
+            <p class="search-title">Search for a City: </p>
+            <!-- search input -->
+            <input type="text" id="enterCity" placeholder="Enter a city name"><button type="button" class="searchBtn">Search</button>
         </div>
     </div>
 
-    <!-- side searchbar -->
-    <div class="row">
-        
+    <!-- search history located below search container/column -->
+    <div class="history-container col-md-3 p-4">
+        <div class="row">
+            <ul class="search-history">
+                <!-- to add li items via javascript -->
+            </ul>
+        </div>
+    </div>
+
+    <!-- big container in the middle of the page showcasing data for current city  -->
+    <div class="currentCity-container">
+        <div class="row">
+            <!-- current city data goes here -->
+        </div>
+    </div>
+
+    <!-- 5 day forecast below current city -->
+    <div class="forecast-container">
+        <div class="row">
+            <h2 class="5-day text-center">5-Day Forecast: </h2>
+            <!-- five day forecast goes here -->
+        </div>
     </div>
     
     <!-- script links -->
