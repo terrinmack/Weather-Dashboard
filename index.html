@@ -23,7 +23,10 @@
         <div class="row">
             <p class="search-title">Search for a City: </p>
             <!-- search input -->
-            <input type="text" id="enterCity" placeholder="Enter a city name"><button type="button" class="searchBtn">Search</button>
+            <form class="search-form">
+                <input type="text" id="enterCity" placeholder="Enter a city name" />
+                <button type="submit" class="searchBtn">Search</button>
+            </form>
         </div>
     </div>
 
@@ -39,6 +42,10 @@
     <!-- big container in the middle of the page showcasing data for current city  -->
     <div class="currentCity-container">
         <div class="row">
+            <h2 class="city-name"></h2>
+                <p class="temperature"></p>
+                <p class="wind-speed"></p>
+                <p class="humidity"></p>
             <!-- current city data goes here -->
         </div>
     </div>
