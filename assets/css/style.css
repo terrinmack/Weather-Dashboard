@@ -4,6 +4,7 @@
 /* page grid layout */
 }
 .main-body {
+    background-color: lightskyblue;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(5, 1fr);
@@ -40,7 +41,7 @@
 
 .searchBtn:hover {
     color: black;
-    background-color: goldenrod;
+    background-color: rgb(218, 110, 32);
 }
 
 .search-title {
