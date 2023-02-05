@@ -12,7 +12,64 @@
 </head>
 
 <body>
-    
+    <!-- full body container fluid -->
+    <div class="container-fluid">
+        <!-- jumbotron/header bar -->
+        <nav class="jumbotron bg-dark text-light p-4 row">
+            <div class="text-center">
+                <h1>Weather Dashboard</h1>
+            </div>
+        </nav>
+
+        <div class="row">
+            <!-- search bar side column -->
+            <div class="searchContainer col-3">
+                <div class="row">
+                    <div class="col-12">
+                        <h3>Search for a city: </h3>
+                    </div>
+                </div>
+
+            <!-- search for city -->
+                <div class="row">
+                    <div class="col-12">
+                        <input type="text" id="enterCity" placeholder="Enter a city"><button type="submit" class="searchBtn">Search</button>
+                    </div>
+                </div>
+
+            <!-- search history -->
+                <div class="row">
+                    <div class="col-12">
+                        <ul class="searchHistory">
+                            <!-- append li items here! -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- display weather section -->
+            <div class="weatherContainer col-9">
+
+                <div class="row">
+                    <div class="currenWeather">
+                        <!-- append current city info here -->
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-12">
+                        <h3>5-Day Forecast</h3>
+                    </div>
+                </div>
+
+                <div class="five-day row">
+                    <!-- append 5-day forecast here -->
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
     <!-- script links -->
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 

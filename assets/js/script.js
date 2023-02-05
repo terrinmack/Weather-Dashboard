@@ -2,14 +2,7 @@
 var apiKey = '4592844a9d1c589bd9c6d1289e2fe7fb'
 
 // variables
-var searchFormEl = document.querySelector('.search-form');
-var cityInput = document.querySelector('#enterCity');
-var cityName = document.querySelector('.city-name');
-var searchBtn = document.querySelector('.searchBtn');
-var searchHistoryContainerEl = document.querySelector('.history-container');
-var searchHistoryEl = document.querySelector('.search-history');
-var currentCityEl = document.querySelector('.currentCity-container');
-var forecastContainerEl = document.querySelector('.five-dayForecast');
+
 
 var cityURL = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + apiKey;
 var cityName = data.name;
