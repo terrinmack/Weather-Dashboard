@@ -48,13 +48,20 @@
             </div>
 
             <!-- display weather section -->
-            <div class="weatherContainer col-9">
+            <div class="weatherContainer card col-9">
                 <div class="row">
                     <div class="weather-detail">
-                        <!-- append current city info here -->
+                        <h2 class="city"></h2>
+                        <p class="current-date"></p>
+                        <p class="weather-icon"></p>
+                        <p class="temperature"></p>
+                        <p class="humidity"></p>
+                        <p class="wind"></p>
+                        <p class="uv"></p>
                     </div>
                 </div>
                 
+                <!-- five day forecast -->
                 <div class="row">
                     <div class="col-12">
                         <h3>5-Day Forecast</h3>
@@ -62,7 +69,68 @@
                 </div>
 
                 <div class="five-day row">
-                    <!-- append 5-day forecast here -->
+                    
+                    <!-- day 1 -->
+                    <div class="col">
+                        <div class="forecast-day card">
+                            <div class="card-body bg-dark">
+                                <p class="day-one-date"></p>
+                                <p class="day-one-icon"></p>
+                                <p class="day-one-temperature"></p>
+                                <p class="day-one-humidity"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- day 2 -->
+                    <div class="col">
+                        <div class="forecast-day card">
+                            <div class="card-body bg-dark">
+                                <p class="day-two-date"></p>
+                                <p class="day-two-icon"></p>
+                                <p class="day-two-temperature"></p>
+                                <p class="day-two-humidity"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- day 3 -->
+                    <div class="col">
+                        <div class="forecast card">
+                            <div class="card-body bg-dark">
+                                <p class="day-three-date"></p>
+                                <p class="day-three-icon"></p>
+                                <p class="day-three-temperature"></p>
+                                <p class="day-three-humidity"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- day 4 -->
+                    <div class="col">
+                        <div class="forecast card">
+                            <div class="card-body bg-dark">
+                                <p class="day-four-date"></p>
+                                <p class="day-four-icon"></p>
+                                <p class="day-four-temperature"></p>
+                                <p class="day-four-humidity"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- day 5 -->
+                    <div class="col">
+                        <div class="forecast card">
+                            <div class="card-body bg-dark">
+                                <p class="day-five-date"></p>
+                                <p class="day-five-icon"></p>
+                                <p class="day-five-temperature"></p>
+                                <p class="day-five-humidity"></p>
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
                 
             </div>

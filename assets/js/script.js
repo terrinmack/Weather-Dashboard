@@ -7,21 +7,25 @@ var historyContainer = document.querySelector('searchHistory');
 var currentContainer = document.querySelector('.weather-container');
 var forecastContainer = document.querySelector('.five-day');
 
-// fetching data via the search button
-searchBtn.addEventListener('click', function(event) {
-    event.preventDefault();
 
-    var currentUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + cityInput.value +'&appid=' +apiKey;
+searchBtn.addEventListener('click')
 
-    console.log(cityInput.value)
-fetch(currentUrl)
+function cityCondition() {
+    // weather api current weather data
+    var currentUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityInput.value +'&appid=' +apiKey;
+    // weather api current weather icon
+
+    fetch(currentUrl)
     .then(function(response) {
         response.json()
         .then(function(data) {
             console.log(data);
         })
     })
-})
+}
 
-
+function currentCityResponse() {
+        var iconCode = response.weather[0].icon;
+        var iconURL = 'http://openweathermap.org/img/w/' + iconCode + '.png';
+}
 
