@@ -7,10 +7,12 @@ var historyContainer = document.querySelector('searchHistory');
 var currentContainer = document.querySelector('.weather-container');
 var forecastContainer = document.querySelector('.five-day');
 
-var currentUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + cityInput.value +'&appid=' +apiKey;
-
+// fetching data via the search button
 searchBtn.addEventListener('click', function(event) {
     event.preventDefault();
+
+    var currentUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + cityInput.value +'&appid=' +apiKey;
+
     console.log(cityInput.value)
 fetch(currentUrl)
     .then(function(response) {
