@@ -3,11 +3,10 @@ var apiKey = '4592844a9d1c589bd9c6d1289e2fe7fb'
 
 // variables
 var cityInput = document.querySelector('#enterCity');
-var searchBtn = document.ququerySelectorerySelector('.searchBtn');
+var searchBtn = document.querySelector('.searchBtn');
 var clearHistory = document.querySelector('.clearHistory');
 var historyContainer = document.querySelector('searchHistory');
 var currentContainer = document.querySelector('.weather-container');
-var today = dayjs().format('MMM DD, YYYY [at] hh:mm:ss a');
 
 // current city variables
 var currentCity = document.querySelector('.city');
@@ -63,10 +62,11 @@ function cityCondition(event) {
             console.log(data);
 
             var iconCode = data.weather[0].icon;
-            var iconURL = 'https://openweathermap.org/img/w/' + iconCode + '.png';
+            var iconURL = ' http://openweathermap.org/img/wn/' + iconCode + '@2x.png';
 
             // display current data card
             currentCity.innerHTML = data.name;
+            currentDate.innerHTML = (moment(data.dt*1000).format('MMMM Do YYYY, h:mm:ss A')) 
             currentIcon.src = iconURL;
             currentTemp.innerHTML = 'Temperature: ' +data.main.temp+ '°F';
             currentHumidity.innerHTML = 'Humidity: ' + data.main.humidity + '%';
