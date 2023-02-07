@@ -66,7 +66,11 @@ function cityCondition(event) {
 
             // display current data card
             currentCity.innerHTML = data.name;
-            currentDate.innerHTML = (moment(data.dt*1000).format('MMMM Do YYYY, h:mm:ss A')) 
+
+            var unixTimestamp = data.dt;
+            var date = unixTimestamp*1000;
+            currentDate.innerHTML = (moment(date).format('MMMM Do YYYY, h:mm:ss ')) 
+            
             currentIcon.src = iconURL;
             currentTemp.innerHTML = 'Temperature: ' +data.main.temp+ '°F';
             currentHumidity.innerHTML = 'Humidity: ' + data.main.humidity + '%';
@@ -74,7 +78,7 @@ function cityCondition(event) {
 
             // display 5-day forecast cards
 
-        });
+        }); 
     });
     }
 
