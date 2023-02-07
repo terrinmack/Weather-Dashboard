@@ -71,7 +71,7 @@ function cityCondition(event) {
 
             var unixTimestamp = data.dt*1000;
     
-            currentDate.innerHTML = (moment(unixTimestamp).format('MMMM Do YYYY, h:mm:ss A')) 
+            currentDate.innerHTML = (moment(unixTimestamp).format('MMMM Do YYYY')) 
             
             currentIcon.src = iconURL;
             currentTemp.innerHTML = 'Temperature: ' +data.main.temp+ '°F';
@@ -98,7 +98,6 @@ function cityCondition(event) {
                     dayTwoDate.innerHTML = (moment(forecastUnix2).format('L'));
                     dayTwoTemp.innerHTML = 'Temp: ' + forecastData.list[8].main.temp + '°F';
                     dayTwoIcon.src = 'https://openweathermap.org/img/wn/' + forecastData.list[8].weather[0].icon + '.png';
-                    console.log(dayOneIcon);
                     dayTwoHum.innerHTML = 'Humidity: ' + forecastData.list[8].main.humidity + '%';
 
                     // day 3
@@ -106,7 +105,6 @@ function cityCondition(event) {
                     dayThreeDate.innerHTML = (moment(forecastUnix3).format('L'));
                     dayThreeTemp.innerHTML = 'Temp: ' + forecastData.list[16].main.temp + '°F';
                     dayThreeIcon.src = 'https://openweathermap.org/img/wn/' + forecastData.list[16].weather[0].icon + '.png';
-                    console.log(dayOneIcon);
                     dayThreeHum.innerHTML = 'Humidity: ' + forecastData.list[16].main.humidity + '%';
 
                     // day 4
@@ -114,7 +112,6 @@ function cityCondition(event) {
                     dayFourDate.innerHTML = (moment(forecastUnix4).format('L'));
                     dayFourTemp.innerHTML = 'Temp: ' + forecastData.list[24].main.temp + '°F';
                     dayFourIcon.src = 'https://openweathermap.org/img/wn/' + forecastData.list[24].weather[0].icon + '.png';
-                    console.log(dayOneIcon);
                     dayFourHum.innerHTML = 'Humidity: ' + forecastData.list[24].main.humidity + '%';
 
                     // day 5
@@ -122,7 +119,6 @@ function cityCondition(event) {
                     dayFiveDate.innerHTML = (moment(forecastUnix5).format('L'));
                     dayFiveTemp.innerHTML = 'Temp: ' + forecastData.list[32].main.temp + '°F';
                     dayFiveIcon.src = 'https://openweathermap.org/img/wn/' + forecastData.list[32].weather[0].icon + '.png';
-                    console.log(dayOneIcon);
                     dayFiveHum.innerHTML = 'Humidity: ' + forecastData.list[32].main.humidity + '%';
 
                 })
