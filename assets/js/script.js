@@ -77,7 +77,6 @@ function cityCondition(event) {
             currentTemp.innerHTML = 'Temperature: ' +data.main.temp+ '°F';
             currentHumidity.innerHTML = 'Humidity: ' + data.main.humidity + '%';
             currentWind.innerHTML = 'Wind: ' +data.wind.speed + ' MPH';
-
             
             var forecastURL = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + lat + '&lon=' + lon + '&units=imperial&appid=' + apiKey;
 
@@ -129,8 +128,7 @@ function cityCondition(event) {
                 })
             })
             
-            
         }); 
-    });
+    }); 
     }
 
