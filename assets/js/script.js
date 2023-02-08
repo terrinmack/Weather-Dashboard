@@ -127,10 +127,11 @@ function cityCondition(event) {
                         list.innerHTML = data.name;
                 
                         historyContainer.append(list);
-                        localStorage.setItem('city', JSON.stringify(list))
-                        console.log(list)
+                        localStorage.setItem('city', JSON.stringify(data.name))
+                        
+                        list.addEventListener('click', cityCondition)
                     }
-                    setHistory()
+                    setHistory();
 
                 }); cityInput.value = '';
             })
