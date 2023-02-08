@@ -5,7 +5,7 @@ var apiKey = '4592844a9d1c589bd9c6d1289e2fe7fb'
 var cityInput = document.querySelector('#enterCity');
 var searchBtn = document.querySelector('.searchBtn');
 var clearHistory = document.querySelector('.clearHistory');
-var historyContainer = document.querySelector('searchHistory');
+var historyContainer = document.querySelector('.searchHistory');
 var currentContainer = document.querySelector('.weather-container');
 
 // current city variables
@@ -60,7 +60,7 @@ function cityCondition(event) {
         response.json()
         .then(function(data) {
             console.log(data);
-
+            
             var iconCode = data.weather[0].icon;
             var iconURL = 'https://openweathermap.org/img/wn/' + iconCode + '@2x.png';
             var lat = data.coord.lat;
@@ -121,10 +121,23 @@ function cityCondition(event) {
                     dayFiveIcon.src = 'https://openweathermap.org/img/wn/' + forecastData.list[32].weather[0].icon + '.png';
                     dayFiveHum.innerHTML = 'Humidity: ' + forecastData.list[32].main.humidity + '%';
 
-                })
+                    function setHistory () {
+                        cityCondition;
+                        var list = document.createElement('li');
+                        list.innerHTML = data.name;
+                
+                        historyContainer.append(list);
+                        localStorage.setItem('city', JSON.stringify(list))
+                        console.log(list)
+                    }
+                    setHistory()
+
+                }); cityInput.value = '';
             })
             
         }); 
     }); 
     }
 
+ 
+    

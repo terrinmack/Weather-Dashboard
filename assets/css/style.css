@@ -1,0 +1,39 @@
+li {
+    color: white;
+    text-align: center;
+    list-style: none;
+    background-color: grey;
+    border-radius: 5px;
+    padding: 5px;
+    margin-left: -35px;
+    margin-top: 10px;
+}
+
+.searchContainer {
+    background-color: lightskyblue;
+    border: 2px solid;
+}
+.weatherContainer {
+    background-color: lightblue;
+}
+
+.weather-detail {
+    background-color: white;
+    border-radius: 400px;
+    border: 2px solid;
+    padding-bottom: 40px;
+}
+
+.weather-detail,h2 {
+    font-size: 3rem;
+}
+.weather-detail,p{
+    font-size: 20px;
+}
+
+.forecast-day {
+    background-color: lightskyblue;
+    border-radius: 200px;
+    border: 2px solid;
+    margin-top: 10px;
+}
