@@ -1,142 +1,83 @@
-// api key
 var apiKey = '4592844a9d1c589bd9c6d1289e2fe7fb'
 
 // variables
-var cityInput = document.querySelector('#enterCity');
-var searchBtn = document.querySelector('.searchBtn');
-var clearHistory = document.querySelector('.clearHistory');
+var cityInputEl = document.querySelector('#enterCity');
+var searchBtnEl = document.querySelector('.searchBtn');
 var historyContainer = document.querySelector('.searchHistory');
-var currentContainer = document.querySelector('.weather-container');
 
-// current city variables
-var currentCity = document.querySelector('.city');
-var currentDate = document.querySelector('.current-date');
-var currentIcon = document.querySelector('#wicon');
-var currentTemp = document.querySelector('.temperature');
-var currentHumidity = document.querySelector('.humidity');
-var currentWind = document.querySelector('.wind');
-
-// day 1
-var dayOneDate = document.querySelector('.day-one-date');
-var dayOneIcon = document.querySelector('.day-one-icon');
-var dayOneTemp = document.querySelector('.day-one-temperature');
-var dayOneHum = document.querySelector('.day-one-humidity');
-
-// day 2
-var dayTwoDate = document.querySelector('.day-two-date');
-var dayTwoIcon = document.querySelector('.day-two-icon');
-var dayTwoTemp = document.querySelector('.day-two-temperature');
-var dayTwoHum = document.querySelector('.day-two-humidity');
-
-// day 3
-var dayThreeDate = document.querySelector('.day-three-date');
-var dayThreeIcon = document.querySelector('.day-three-icon');
-var dayThreeTemp = document.querySelector('.day-three-temperature');
-var dayThreeHum = document.querySelector('.day-three-humidity');
-
-// day 4
-var dayFourDate = document.querySelector('.day-four-date');
-var dayFourIcon = document.querySelector('.day-four-icon');
-var dayFourTemp = document.querySelector('.day-four-temperature');
-var dayFourHum = document.querySelector('.day-four-humidity');
-
-// day 5
-var dayFiveDate = document.querySelector('.day-five-date');
-var dayFiveIcon = document.querySelector('.day-five-icon');
-var dayFiveTemp = document.querySelector('.day-five-temperature');
-var dayFiveHum = document.querySelector('.day-five-humidity');
-
-searchBtn.addEventListener('click', cityCondition);
-
-// main search page function
-function cityCondition(event) {
-    event.preventDefault()
-    // weather api current weather data
-    var currentUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityInput.value +'&units=imperial&appid=' + apiKey;
-    // weather api current weather icon
-
-    fetch(currentUrl)
-    .then(function(response) {
-        response.json()
-        .then(function(data) {
-            console.log(data);
-            
-            var iconCode = data.weather[0].icon;
-            var iconURL = 'https://openweathermap.org/img/wn/' + iconCode + '@2x.png';
-            var lat = data.coord.lat;
-            var lon = data.coord.lon;
-
-            // display current data card
-            currentCity.innerHTML = data.name;
-
-            var unixTimestamp = data.dt*1000;
+function currentCondition(event) {
+    event.preventDefault();
     
-            currentDate.innerHTML = (moment(unixTimestamp).format('MMMM Do YYYY')) 
+    var city = cityInputEl.value;
+
+    // current weather url
+    var currentURL = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial&appid=' + apiKey;
+
+    // 5-day forecast weather url
+    var forecastURL = 'https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&units=imperial&appid=' + apiKey;
+
+    fetch(currentURL)
+    .then(function(data) {
+        data.json()
+            .then(function(cityWeatherResponse) {
+            console.log(cityWeatherResponse)
+
+            $('.city').html(cityWeatherResponse.name);
+            $('.current-date').html(moment(cityWeatherResponse.dt*1000).format('MMMM Do YYYY'));
+            $('#wicon').attr('src', 'https://openweathermap.org/img/wn/' + cityWeatherResponse.weather[0].icon + '@2x.png');
+            $('.temperature').html('Temp: ' + cityWeatherResponse.main.temp + '°F');
+            $('.humidity').html('Humidity: ' + cityWeatherResponse.main.humidity + '%');
+            $('.wind').html('Wind: ' + cityWeatherResponse.wind.speed + ' MPH');
             
-            currentIcon.src = iconURL;
-            currentTemp.innerHTML = 'Temperature: ' +data.main.temp+ '°F';
-            currentHumidity.innerHTML = 'Humidity: ' + data.main.humidity + '%';
-            currentWind.innerHTML = 'Wind: ' +data.wind.speed + ' MPH';
-            
-            var forecastURL = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + lat + '&lon=' + lon + '&units=imperial&appid=' + apiKey;
+        })
+        // city weather response fetch end
+        
+    })
+    // data end
 
-            fetch(forecastURL)
-            .then(function(forecastResponse) {
-                forecastResponse.json()
-                .then(function(forecastData) {
-                    console.log(forecastData)
+    fetch(forecastURL)
+    .then(function(forecastData) {
+        forecastData.json()
+            .then(function(forecastWeatherResponse) {
+            console.log(forecastWeatherResponse)
 
-                    // day 1
-                    var forecastUnix1 = forecastData.list[0].dt*1000;
-                    dayOneDate.innerHTML = (moment(forecastUnix1).format('L'));
-                    dayOneTemp.innerHTML = 'Temp: ' + forecastData.list[0].main.temp + '°F';
-                    dayOneIcon.src = 'https://openweathermap.org/img/wn/' + forecastData.list[0].weather[0].icon + '.png';
-                    dayOneHum.innerHTML = 'Humidity: ' + forecastData.list[0].main.humidity + '%';
+            // day one
+            $('.day-one-date').html(moment(forecastWeatherResponse.list[0].dt*1000).format('L'))
+            $('#ficon1').attr('src','https://openweathermap.org/img/wn/' + forecastWeatherResponse.list[0].weather[0].icon + '.png')
+            $('.day-one-temp').html('Temp: ' + forecastWeatherResponse.list[0].main.temp + '°F')
+            $('.day-one-humidity').html('Humidity: ' + forecastWeatherResponse.list[0].main.humidity + '%')
 
-                    // day 2
-                    var forecastUnix2 = forecastData.list[8].dt*1000;
-                    dayTwoDate.innerHTML = (moment(forecastUnix2).format('L'));
-                    dayTwoTemp.innerHTML = 'Temp: ' + forecastData.list[8].main.temp + '°F';
-                    dayTwoIcon.src = 'https://openweathermap.org/img/wn/' + forecastData.list[8].weather[0].icon + '.png';
-                    dayTwoHum.innerHTML = 'Humidity: ' + forecastData.list[8].main.humidity + '%';
+            // day two
+            $('.day-two-date').html(moment(forecastWeatherResponse.list[8].dt*1000).format('L'))
+            $('#ficon2').attr('src','https://openweathermap.org/img/wn/' + forecastWeatherResponse.list[8].weather[0].icon + '.png')
+            $('.day-two-temp').html('Temp: ' + forecastWeatherResponse.list[8].main.temp + '°F')
+            $('.day-two-humidity').html('Humidity: ' + forecastWeatherResponse.list[8].main.humidity + '%')
 
-                    // day 3
-                    var forecastUnix3 = forecastData.list[16].dt*1000;
-                    dayThreeDate.innerHTML = (moment(forecastUnix3).format('L'));
-                    dayThreeTemp.innerHTML = 'Temp: ' + forecastData.list[16].main.temp + '°F';
-                    dayThreeIcon.src = 'https://openweathermap.org/img/wn/' + forecastData.list[16].weather[0].icon + '.png';
-                    dayThreeHum.innerHTML = 'Humidity: ' + forecastData.list[16].main.humidity + '%';
+            // day three
+            $('.day-three-date').html(moment(forecastWeatherResponse.list[16].dt*1000).format('L'))
+            $('#ficon3').attr('src','https://openweathermap.org/img/wn/' + forecastWeatherResponse.list[16].weather[0].icon + '.png')
+            $('.day-three-temp').html('Temp: ' + forecastWeatherResponse.list[16].main.temp + '°F')
+            $('.day-three-humidity').html('Humidity: ' + forecastWeatherResponse.list[16].main.humidity + '%')
 
-                    // day 4
-                    var forecastUnix4 = forecastData.list[24].dt*1000;
-                    dayFourDate.innerHTML = (moment(forecastUnix4).format('L'));
-                    dayFourTemp.innerHTML = 'Temp: ' + forecastData.list[24].main.temp + '°F';
-                    dayFourIcon.src = 'https://openweathermap.org/img/wn/' + forecastData.list[24].weather[0].icon + '.png';
-                    dayFourHum.innerHTML = 'Humidity: ' + forecastData.list[24].main.humidity + '%';
+            // day four
+            $('.day-four-date').html(moment(forecastWeatherResponse.list[24].dt*1000).format('L'))
+            $('#ficon4').attr('src','https://openweathermap.org/img/wn/' + forecastWeatherResponse.list[24].weather[0].icon + '.png')
+            $('.day-four-temp').html('Temp: ' + forecastWeatherResponse.list[24].main.temp + '°F')
+            $('.day-four-humidity').html('Humidity: ' + forecastWeatherResponse.list[24].main.humidity + '%')
 
-                    // day 5
-                    var forecastUnix5 = forecastData.list[32].dt*1000;
-                    dayFiveDate.innerHTML = (moment(forecastUnix5).format('L'));
-                    dayFiveTemp.innerHTML = 'Temp: ' + forecastData.list[32].main.temp + '°F';
-                    dayFiveIcon.src = 'https://openweathermap.org/img/wn/' + forecastData.list[32].weather[0].icon + '.png';
-                    dayFiveHum.innerHTML = 'Humidity: ' + forecastData.list[32].main.humidity + '%';
+            // day five
+            $('.day-five-date').html(moment(forecastWeatherResponse.list[32].dt*1000).format('L'))
+            $('#ficon5').attr('src','https://openweathermap.org/img/wn/' + forecastWeatherResponse.list[32].weather[0].icon + '.png')
+            $('.day-five-temp').html('Temp: ' + forecastWeatherResponse.list[32].main.temp + '°F')
+            $('.day-five-humidity').html('Humidity: ' + forecastWeatherResponse.list[30].main.humidity + '%')
 
-                    function setHistory () {
-                        cityCondition;
-                        var list = document.createElement('li');
-                        list.innerHTML = data.name;
-                
-                        historyContainer.append(list);
-                        localStorage.setItem('city', JSON.stringify(data.name))
-                        
-                        list.addEventListener('click', cityCondition)
-                        window.localStorage.getItem('city')
-                    }
-                    setHistory();
+        })
+        // forecast weather response fetch end
+    })
+    // forecast data end
 
-                }); cityInput.value = '';
-            })
-            
-        }); 
-    }); 
-    }
+// currentCondition function end
+}
+
+// search button event listener
+searchBtnEl.addEventListener('click', currentCondition)

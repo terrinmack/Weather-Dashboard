@@ -1,5 +1,5 @@
 
-    // api key
+// api key
 var apiKey = '4592844a9d1c589bd9c6d1289e2fe7fb'
 
 // variables
