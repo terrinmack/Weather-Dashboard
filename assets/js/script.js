@@ -6,8 +6,8 @@ var searchBtnEl = document.querySelector('.searchBtn');
 var historyContainer = document.querySelector('.searchHistory');
 var searchHistory = [];
 
-function currentCondition() {
-    var city = cityInputEl.value;
+function currentCondition(city) {
+    //var city = cityInputEl.value;
 
     // current weather url
     var currentURL = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial&appid=' + apiKey;
@@ -82,8 +82,9 @@ searchBtnEl.addEventListener('click', function (event) {
 
     var list = document.createElement('li');
     list.classList.add('list-group-item');
-
+    
     var city = cityInputEl.value;
+    currentCondition(city);
             list.innerHTML = city;
             historyContainer.append(list); 
             searchHistory.push(city);
@@ -94,7 +95,9 @@ searchBtnEl.addEventListener('click', function (event) {
 
 // when page loads, the last searched item appears on the page via local storage
 $(document).ready(function() {
-    var history = localStorage.getItem('search-history');
+    // parse the value obtained from storage
+    var history = JSON.parse(localStorage.getItem('search-history')); 
+    console.log(history)
     if (history) {
         var lastSearchedIndex = history.length - 1;
         var lastSearchedCity = history[lastSearchedIndex];
@@ -104,7 +107,7 @@ $(document).ready(function() {
 
 // when user clicks a list item, the currentCondition function loads that city/item
 $(document).on("click", ".list-group-item", function() {
-    var cityItem = $('.list-group-item').text();
+    var cityItem = $(this).text();
     console.log(cityItem);
     currentCondition(cityItem);
 });
