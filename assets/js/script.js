@@ -41,30 +41,35 @@ function currentCondition(city) {
             $('#ficon1').attr('src','https://openweathermap.org/img/wn/' + forecastWeatherResponse.list[0].weather[0].icon + '.png')
             $('.day-one-temp').html('Temp: ' + forecastWeatherResponse.list[0].main.temp + '°F')
             $('.day-one-humidity').html('Humidity: ' + forecastWeatherResponse.list[0].main.humidity + '%')
+            $('.day-one-wind').html('Wind: ' + forecastWeatherResponse.list[0].wind.speed + 'MPH')
 
             // day two
             $('.day-two-date').html(moment(forecastWeatherResponse.list[8].dt*1000).format('L'))
             $('#ficon2').attr('src','https://openweathermap.org/img/wn/' + forecastWeatherResponse.list[8].weather[0].icon + '.png')
             $('.day-two-temp').html('Temp: ' + forecastWeatherResponse.list[8].main.temp + '°F')
             $('.day-two-humidity').html('Humidity: ' + forecastWeatherResponse.list[8].main.humidity + '%')
+            $('.day-two-wind').html('Wind: ' + forecastWeatherResponse.list[8].wind.speed + 'MPH')
 
             // day three
             $('.day-three-date').html(moment(forecastWeatherResponse.list[16].dt*1000).format('L'))
             $('#ficon3').attr('src','https://openweathermap.org/img/wn/' + forecastWeatherResponse.list[16].weather[0].icon + '.png')
             $('.day-three-temp').html('Temp: ' + forecastWeatherResponse.list[16].main.temp + '°F')
             $('.day-three-humidity').html('Humidity: ' + forecastWeatherResponse.list[16].main.humidity + '%')
+            $('.day-three-wind').html('Wind: ' + forecastWeatherResponse.list[16].wind.speed + 'MPH')
 
             // day four
             $('.day-four-date').html(moment(forecastWeatherResponse.list[24].dt*1000).format('L'))
             $('#ficon4').attr('src','https://openweathermap.org/img/wn/' + forecastWeatherResponse.list[24].weather[0].icon + '.png')
             $('.day-four-temp').html('Temp: ' + forecastWeatherResponse.list[24].main.temp + '°F')
             $('.day-four-humidity').html('Humidity: ' + forecastWeatherResponse.list[24].main.humidity + '%')
+            $('.day-four-wind').html('Wind: ' + forecastWeatherResponse.list[24].wind.speed + 'MPH')
 
             // day five
             $('.day-five-date').html(moment(forecastWeatherResponse.list[32].dt*1000).format('L'))
             $('#ficon5').attr('src','https://openweathermap.org/img/wn/' + forecastWeatherResponse.list[32].weather[0].icon + '.png')
             $('.day-five-temp').html('Temp: ' + forecastWeatherResponse.list[32].main.temp + '°F')
             $('.day-five-humidity').html('Humidity: ' + forecastWeatherResponse.list[30].main.humidity + '%')
+            $('.day-five-wind').html('Wind: ' + forecastWeatherResponse.list[32].wind.speed + 'MPH')
 
         })
         // forecast weather response fetch end
@@ -102,7 +107,8 @@ $(document).ready(function() {
         var lastSearchedIndex = history.length - 1;
         var lastSearchedCity = history[lastSearchedIndex];
         currentCondition(lastSearchedCity);    
-    }
+    };
+    
 });
 
 // when user clicks a list item, the currentCondition function loads that city/item
