@@ -5,8 +5,7 @@ var cityInputEl = document.querySelector('#enterCity');
 var searchBtnEl = document.querySelector('.searchBtn');
 var historyContainer = document.querySelector('.searchHistory');
 
-function currentCondition(event) {
-    event.preventDefault();
+function currentCondition() {
     
     var city = cityInputEl.value;
 
@@ -80,4 +79,20 @@ function currentCondition(event) {
 }
 
 // search button event listener
-searchBtnEl.addEventListener('click', currentCondition)
+
+searchBtnEl.addEventListener('click', function (event) {
+    event.preventDefault();
+        
+    var list = document.createElement('li');
+
+    var searchHistoryList = [];
+    var city = cityInputEl.value;
+    currentCondition(city);
+        if (!searchHistoryList.includes(city)) {
+            searchHistoryList.push(city);
+            list.innerHTML = city;
+            historyContainer.append(list); 
+
+            localStorage.setItem('city', JSON.stringify(searchHistoryList))
+        }
+  })
