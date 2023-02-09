@@ -4,9 +4,9 @@ var apiKey = '4592844a9d1c589bd9c6d1289e2fe7fb'
 var cityInputEl = document.querySelector('#enterCity');
 var searchBtnEl = document.querySelector('.searchBtn');
 var historyContainer = document.querySelector('.searchHistory');
+var searchHistory = [];
 
 function currentCondition() {
-    
     var city = cityInputEl.value;
 
     // current weather url
@@ -15,11 +15,9 @@ function currentCondition() {
     // 5-day forecast weather url
     var forecastURL = 'https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&units=imperial&appid=' + apiKey;
 
-    fetch(currentURL)
-    .then(function(data) {
-        data.json()
-            .then(function(cityWeatherResponse) {
-            console.log(cityWeatherResponse)
+    fetch(currentURL).then(function(data) {
+        data.json().then(function(cityWeatherResponse) {
+            // console.log(cityWeatherResponse)
 
             $('.city').html(cityWeatherResponse.name);
             $('.current-date').html(moment(cityWeatherResponse.dt*1000).format('MMMM Do YYYY'));
@@ -34,11 +32,9 @@ function currentCondition() {
     })
     // data end
 
-    fetch(forecastURL)
-    .then(function(forecastData) {
-        forecastData.json()
-            .then(function(forecastWeatherResponse) {
-            console.log(forecastWeatherResponse)
+    fetch(forecastURL).then(function(forecastData) {
+        forecastData.json().then(function(forecastWeatherResponse) {
+            // console.log(forecastWeatherResponse)
 
             // day one
             $('.day-one-date').html(moment(forecastWeatherResponse.list[0].dt*1000).format('L'))
@@ -72,27 +68,43 @@ function currentCondition() {
 
         })
         // forecast weather response fetch end
-    })
+    });
+    
     // forecast data end
 
 // currentCondition function end
 }
 
-// search button event listener
 
+// search button event listener
 searchBtnEl.addEventListener('click', function (event) {
     event.preventDefault();
-        
-    var list = document.createElement('li');
 
-    var searchHistoryList = [];
+    var list = document.createElement('li');
+    list.classList.add('list-group-item');
+
     var city = cityInputEl.value;
-    currentCondition(city);
-        if (!searchHistoryList.includes(city)) {
-            searchHistoryList.push(city);
             list.innerHTML = city;
             historyContainer.append(list); 
+            searchHistory.push(city);
+                localStorage.setItem('search-history', JSON.stringify(searchHistory));
+                console.log(searchHistory);
+        });
 
-            localStorage.setItem('city', JSON.stringify(searchHistoryList))
-        }
-  })
+
+// when page loads, the last searched item appears on the page via local storage
+$(document).ready(function() {
+    var history = localStorage.getItem('search-history');
+    if (history) {
+        var lastSearchedIndex = history.length - 1;
+        var lastSearchedCity = history[lastSearchedIndex];
+        currentCondition(lastSearchedCity);    
+    }
+});
+
+// when user clicks a list item, the currentCondition function loads that city/item
+$(document).on("click", ".list-group-item", function() {
+    var cityItem = $(this).text();
+    console.log(cityItem);
+    currentCondition(cityItem);
+});
