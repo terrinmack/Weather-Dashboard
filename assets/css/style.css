@@ -37,3 +37,8 @@ li {
     border: 2px solid;
     margin-top: 10px;
 }
+
+.list-group-item:hover {
+    border: 2px solid blue;
+    cursor: pointer;
+}
