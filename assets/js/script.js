@@ -104,7 +104,7 @@ $(document).ready(function() {
 
 // when user clicks a list item, the currentCondition function loads that city/item
 $(document).on("click", ".list-group-item", function() {
-    var cityItem = $(this).text();
+    var cityItem = $('.list-group-item').text();
     console.log(cityItem);
     currentCondition(cityItem);
 });
